@@ -9,15 +9,20 @@ from helpers.helpers import check_data
 def get_movies():
     """
     No Token Required
+    Optional Search Params:
+    MovieName
     """
-    keys = ['MovieName', 'Certification', 'Release_Date', 'Genres', 'Language', 'Budget', 'Revenue', 'Runtime']
-    result = run_statement('CALL get_movies()')
+    movieName = request.args.get('movieName')
+    if (movieName == None):
+        movieName = None
+    keys = ['ID','MovieName', 'Certification', 'Release_Date', 'Genres', 'Language', 'Budget', 'Revenue', 'Runtime', 'poster']
+    result = run_statement('CALL get_movies(?)', [movieName])
+    response = []
     if(type(result) == list):
         if result == []:
             return make_response(jsonify('Something went wrong, please try again.'), 500)
         for movie in result:
-            zipped = zip(keys, movie)
-            movie = (dict(zipped))
-            return make_response(jsonify(movie), 200)
+            response.append(dict(zip(keys, movie)))
+        return make_response(jsonify(response), 200)
     else:
         return make_response(jsonify('Something went wrong, please try again.'), 500)
