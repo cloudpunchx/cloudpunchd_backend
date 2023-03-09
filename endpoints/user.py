@@ -27,7 +27,11 @@ def user_signup():
     bio = request.json.get('bio')
     profile_img = request.json.get('profileImg')
     result = run_statement("CALL user_signup(?,?,?,?,?,?,?)", [username, first_name, last_name, email, hash_result, bio, profile_img])
-    if(type(result) == list):
+    if 'user_UN_username' in result:
+        return make_response(jsonify("This username is already in use, please enter another username."), 409)
+    elif "user_UN_email" in result:
+            return make_response(jsonify("This email is already in use, please enter another email or click forgot password."), 409)
+    elif(type(result) == list):
         if result == []:
             return make_response(jsonify("Something went wrong, please try again."), 500)
         result = run_statement("CALL user_login(?)", [result[0][0]])
@@ -37,9 +41,3 @@ def user_signup():
             return make_response(jsonify(f"Welcome User {user_id}, login successful."), 200)
         elif result[0][0] == 0:
             return make_response(jsonify("Something went wrong, please try again."), 500)
-        elif "user_UN_email" in result:
-            return make_response(jsonify("This email is already in use, please enter another email or click forgot password."), 409)
-        elif "user_UN_username" in result:
-            return make_response(jsonify("This username is already in use, please enter another username."), 409)
-        else:
-            return make_response(jsonify(result), 500)
