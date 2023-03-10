@@ -10,8 +10,6 @@ def user_signup():
     """
     Expects 5 Args:
     username, firstName, lastName, email, password
-    1 Optional:
-    bio, profileImg
     """
     required_data = ['username', 'firstName', 'lastName', 'email', 'password']
     check_result = check_data(request.json, required_data)
@@ -24,9 +22,7 @@ def user_signup():
     password = request.json.get('password')
     salt = bcrypt.gensalt()
     hash_result = bcrypt.hashpw(password.encode(), salt)
-    bio = request.json.get('bio')
-    profile_img = request.json.get('profileImg')
-    result = run_statement("CALL user_signup(?,?,?,?,?,?,?)", [username, first_name, last_name, email, hash_result, bio, profile_img])
+    result = run_statement("CALL user_signup(?,?,?,?,?)", [username, first_name, last_name, email, hash_result])
     if 'user_UN_username' in result:
         return make_response(jsonify("This username is already in use, please enter another username."), 409)
     elif "user_UN_email" in result:
