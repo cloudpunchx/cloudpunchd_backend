@@ -27,7 +27,7 @@ def get_movies():
     else:
         return make_response(jsonify('Something went wrong, please try again.'), 500)
 
-#GET Movies
+#GET Featured Movies
 @app.get('/api/movies-featured')
 def get_featured_movies():
     """
