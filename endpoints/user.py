@@ -13,7 +13,7 @@ def get_user_profile():
     token
     """
     required_data = ['token']
-    check_result = check_data(request.json, required_data)
+    check_result = check_data(request.headers, required_data)
     if check_result != None:
         return check_result
     token = request.headers.get('token')
@@ -59,6 +59,6 @@ def user_signup():
         if (type(result) == list):
             user_id = result[0][0]
             token = result[0][1]
-            return make_response(jsonify(f"Welcome User {user_id}, login successful."), 200)
+            return make_response(jsonify(user_id, token), 201)
         elif result[0][0] == 0:
             return make_response(jsonify("Something went wrong, please try again."), 500)
