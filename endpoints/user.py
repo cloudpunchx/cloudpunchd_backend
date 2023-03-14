@@ -62,3 +62,35 @@ def user_signup():
             return make_response(jsonify(user_id, token), 201)
         elif result[0][0] == 0:
             return make_response(jsonify("Something went wrong, please try again."), 500)
+
+# PATCH User Profile
+@app.patch('/api/user')
+def edit_user_profile():
+    """
+    Expects 1 Arg:
+    token
+    """
+    required_data = ['token']
+    check_result = check_data(request.headers, required_data)
+    if check_result != None:
+        return check_result
+    token = request.headers.get('token')
+    username = request.json.get('username')
+    first_name = request.json.get('firstName')
+    last_name = request.json.get('lastName')
+    email = request.json.get('email')
+    password = request.json.get('password')
+    salt = bcrypt.gensalt()
+    hash_result = bcrypt.hashpw(password.encode(), salt)
+    if (hash_result == None):
+        hash_result = None
+    bio = request.json.get('bio')
+    profile_img = request.json.get('profileImg')
+    result = run_statement('CALL edit_user_profile(?,?,?,?,?,?,?,?)', [token, username, first_name, last_name, email, hash_result, bio, profile_img])
+    if (type(result) == list):
+        if result[0][0] == 1:
+            return make_response(jsonify("Successfully edited profile."), 200)
+        elif result[0][0] == 0:
+            return make_response(jsonify("Something went wrong, please try again."), 500)
+    else:
+        return make_response(jsonify(result), 500)
