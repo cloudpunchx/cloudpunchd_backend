@@ -53,11 +53,11 @@ def get_user_watchlist():
     Token
     """
     required_data = ['token']
-    check_result = check_data(request.json, required_data)
+    check_result = check_data(request.headers, required_data)
     if check_result != None:
         return check_result
-    token = request.json.get('token')
-    keys = ['ID','MovieName', 'Certification', 'Release_Date', 'Genres', 'Language', 'Budget', 'Revenue', 'Runtime', 'poster']
+    token = request.headers.get('token')
+    keys = ['ID','MovieName', 'Certification', 'Release_Date', 'Genres', 'Language', 'Budget', 'Revenue', 'Runtime', 'poster', 'cover_img']
     result = run_statement('CALL get_user_watchlist(?)', [token])
     response = []
     if(type(result) == list):
