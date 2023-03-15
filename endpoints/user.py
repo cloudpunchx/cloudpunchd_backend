@@ -4,7 +4,6 @@ from flask import make_response, jsonify, request
 from helpers.dbhelpers import run_statement
 from helpers.helpers import check_data
 
-# TESTING REQUEST.HEADERS
 # GET User Profile
 @app.get('/api/user')
 def get_user_profile():
