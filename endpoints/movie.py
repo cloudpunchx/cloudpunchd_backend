@@ -84,6 +84,6 @@ def get_user_watchlist_count():
     result = run_statement('CALL get_watchlist_count(?)', [token])
     if (type(result) == list):
         movie_count = result[0][0]
-        return make_response(jsonify(movie_count), 201)
+        return make_response(jsonify(movie_count), 200)
     elif result[0][0] == 0:
         return make_response(jsonify("Something went wrong, please try again."), 500)
