@@ -16,7 +16,7 @@ def get_user_top_four():
     if check_result != None:
         return check_result
     token = request.headers.get('token')
-    keys = ['ID','MovieName', 'Certification', 'Release_Date', 'Genres', 'Language', 'Budget', 'Revenue', 'Runtime', 'poster', 'cover_img']
+    keys = ['ID','MovieName', 'Certification', 'Release_Date', 'Genres', 'Language', 'Budget', 'Revenue', 'Runtime', 'poster', 'coverImg', 'Director']
     result = run_statement('CALL get_user_top_four_movies(?)', [token])
     response = []
     if(type(result) == list):
