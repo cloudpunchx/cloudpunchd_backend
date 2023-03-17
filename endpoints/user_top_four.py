@@ -26,3 +26,27 @@ def get_user_top_four():
         return make_response(jsonify(response), 200)
     else:
         return make_response(jsonify('Something went wrong, please try again.'), 500)
+
+# POST (Add) New Top Four Choice
+@app.post('/api/user-top-four')
+def add_user_top_four():
+    """
+    Expects 1 Arg:
+    movieName
+    """
+    required_data = ['movieName']
+    check_result = check_data(request.json, required_data)
+    if check_result != None:
+        return check_result
+    movieName = request.json.get('movieName')
+    result = run_statement("CALL add_user_top_four(?)", [movieName])
+    # NOT DONE BELOW
+    if (type(result) == list):
+        if result[0][0] == 1:
+            return make_response(jsonify("Successfully added Item to Menu."), 200)
+        elif result[0][0] == 0:
+            return make_response(jsonify("Something went wrong, please try again."), 500)
+    elif "'restaurant_id' cannot be null" in result:
+        return make_response(jsonify("Error: Action Not Authorized"), 401)
+    else:
+        return make_response(jsonify(result), 500)
