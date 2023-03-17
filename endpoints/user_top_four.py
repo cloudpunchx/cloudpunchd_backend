@@ -40,7 +40,7 @@ def add_user_top_four():
         return check_result
     movieName = request.json.get('movieName')
     result = run_statement("CALL add_user_top_four(?)", [movieName])
-    # NOT DONE BELOW
+    # NOT DONE BELOW 
     if (type(result) == list):
         if result[0][0] == 1:
             return make_response(jsonify("Successfully added Item to Menu."), 200)
