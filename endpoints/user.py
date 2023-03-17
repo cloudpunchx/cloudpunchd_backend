@@ -93,3 +93,24 @@ def edit_user_profile():
             return make_response(jsonify("Something went wrong, please try again."), 500)
     else:
         return make_response(jsonify(result), 500)
+
+# DELETE User Profile
+@app.delete('/api/user')
+def delete_client():
+    """
+    Expects 1 Arg:
+    token
+    """
+    required_data = ['token']
+    check_result = check_data(request.headers, required_data)
+    if check_result != None:
+        return check_result
+    token = request.headers.get('token')
+    result = run_statement("CALL delete_user_account(?)", [token])
+    if (type(result) == list):
+        if result[0][0] == 1:
+            return make_response(jsonify("Successfully deleted account."), 200)
+        elif result[0][0] == 0:
+            return make_response(jsonify("An unexpected error has occurred, please try again."), 400)
+    else:
+        return make_response(jsonify("An unexpected error has occurred, please try again."), 500)
