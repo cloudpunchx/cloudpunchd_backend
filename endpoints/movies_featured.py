@@ -9,7 +9,7 @@ def get_featured_movies():
     """
     No Token Required
     """
-    keys = ['ID','MovieName', 'Certification', 'Release_Date', 'Genres', 'Language', 'Budget', 'Revenue', 'Runtime', 'Poster', 'coverImg', 'Director']
+    keys = ['ID','MovieName', 'Certification', 'Release_Date', 'Genres', 'Language', 'Budget', 'Revenue', 'Runtime', 'Poster', 'coverImg', 'Director', 'Description', 'Tagline']
     result = run_statement('CALL get_featured_movies()')
     response = []
     if(type(result) == list):

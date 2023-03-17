@@ -17,7 +17,7 @@ def get_movies():
     movieId = request.args.get('movieId')
     if (movieId == None):
         movieId = None
-    keys = ['ID','MovieName', 'Certification', 'Release_Date', 'Genres', 'Language', 'Budget', 'Revenue', 'Runtime', 'Poster', 'coverImg', 'Director']
+    keys = ['ID','MovieName', 'Certification', 'Release_Date', 'Genres', 'Language', 'Budget', 'Revenue', 'Runtime', 'Poster', 'coverImg', 'Director', 'Description', 'Tagline']
     result = run_statement('CALL get_movies(?,?)', [movieName, movieId])
     response = []
     if(type(result) == list):
