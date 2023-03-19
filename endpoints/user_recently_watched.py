@@ -15,7 +15,7 @@ def get_user_recently_watched():
     if check_result != None:
         return check_result
     token = request.headers.get('token')
-    keys = ['ID','MovieName', 'Certification', 'Release_Date', 'Genres', 'Language', 'Budget', 'Revenue', 'Runtime', 'Poster', 'coverImg', 'Director', 'Description', 'Tagline']
+    keys = ['ID','MovieName', 'Certification', 'Release_Date', 'Genres', 'Language', 'Budget', 'Revenue', 'Runtime', 'Poster', 'coverImg', 'Director', 'Description', 'Tagline', 'WatchedOn', 'Rating']
     result = run_statement('CALL get_recently_watched(?)', [token])
     response = []
     if(type(result) == list):
