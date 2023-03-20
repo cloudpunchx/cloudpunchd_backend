@@ -16,7 +16,7 @@ def get_user_profile():
     if check_result != None:
         return check_result
     token = request.headers.get('token')
-    keys = ["userId", "username", "firstName", "lastName", "email", "password", "bio", "createdAt", "profile_img"]
+    keys = ["userId", "username", "firstName", "lastName", "email", "password", "bio", "createdAt", "profileImg"]
     result = run_statement('CALL get_user_profile(?)', [token])
     if(type(result) == list):
         if result == []:
