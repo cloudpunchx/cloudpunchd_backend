@@ -28,3 +28,32 @@ def get_user_film_log():
         return make_response(jsonify(response), 200)
     else:
         return make_response(jsonify('Something went wrong, please try again.'), 500)
+
+# POST (Add) Movie to Watched
+@app.post('/api/user-film-log')
+def add_to_watched():
+    """
+    Expects 5 Args
+    token, movieId, watchedOn, rating, loved
+    """
+    required_data = ['movieId', 'watchedOn', 'rating', 'loved']
+    required_header = ['token']
+    check_result = check_data(request.headers, required_header)
+    if check_result != None:
+        return check_result
+    token = request.headers.get('token')
+    check_result = check_data(request.json, required_data)
+    if check_result != None:
+        return check_result
+    movieId = request.json.get('movieId')
+    watchedOn = request.json.get('watchedOn')
+    rating = request.json.get('rating')
+    loved = request.json.get('loved')
+    result = run_statement("CALL add_movie_to_watched(?,?,?,?,?)", [token, movieId, watchedOn, rating, loved])
+    if (type(result) == list):
+        if result[0][0] == 1:
+            return make_response(jsonify("Successfully added movie to watched."), 200)
+        elif result[0][0] == 0:
+            return make_response(jsonify("Something went wrong, please try again."), 500)
+    else:
+        return make_response(jsonify(result), 500)
