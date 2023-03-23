@@ -62,11 +62,12 @@ def user_signup():
         elif result[0][0] == 0:
             return make_response(jsonify("Something went wrong, please try again."), 500)
 
+# NOT WORKING
 # PATCH User Profile
 @app.patch('/api/user')
 def edit_user_profile():
     """
-    Expects 1 Arg:
+    Expects Args:
     token
     """
     required_data = ['token']
@@ -75,16 +76,28 @@ def edit_user_profile():
         return check_result
     token = request.headers.get('token')
     username = request.json.get('username')
+    if (username == ''):
+        username = None
     first_name = request.json.get('firstName')
+    if (first_name == ''):
+        first_name = None
     last_name = request.json.get('lastName')
+    if (last_name == ''):
+        last_name = None
     email = request.json.get('email')
+    if (email == ''):
+        email = None
     password = request.json.get('password')
     salt = bcrypt.gensalt()
     hash_result = bcrypt.hashpw(password.encode(), salt)
     if (hash_result == None):
         hash_result = None
     bio = request.json.get('bio')
+    if (bio == ''):
+        bio = None
     profile_img = request.json.get('profileImg')
+    if (profile_img == ''):
+        profile_img = None
     result = run_statement('CALL edit_user_profile(?,?,?,?,?,?,?,?)', [token, username, first_name, last_name, email, hash_result, bio, profile_img])
     if (type(result) == list):
         if result[0][0] == 1:
