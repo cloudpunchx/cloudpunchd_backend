@@ -49,8 +49,10 @@ def user_signup():
     result = run_statement("CALL user_signup(?,?,?,?,?)", [username, first_name, last_name, email, hash_result])
     if 'user_UN_username' in result:
         return make_response(jsonify("This username is already in use, please enter another username."), 409)
-    elif "user_UN_email" in result:
+    elif 'user_UN_email' in result:
             return make_response(jsonify("This email is already in use, please enter another email or click forgot password."), 409)
+    elif 'user_CHECK_email_format' in result:
+            return make_response(jsonify("Check email format and try again."))
     elif(type(result) == list):
         if result == []:
             return make_response(jsonify("Something went wrong, please try again."), 500)

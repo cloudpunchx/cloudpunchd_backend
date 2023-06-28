@@ -36,7 +36,7 @@ def add_to_watched():
     Expects 5 Args
     token, movieId, watchedOn, rating, loved
     """
-    required_data = ['movieId', 'watchedOn', 'rating', 'loved']
+    required_data = ['movieId']
     required_header = ['token']
     check_result = check_data(request.headers, required_header)
     if check_result != None:
