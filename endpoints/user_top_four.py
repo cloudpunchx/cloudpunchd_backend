@@ -32,33 +32,44 @@ def get_user_top_four():
 def add_user_top_four():
     """
     Expects 2 Args:
-    Token, movieName
+    Token, movieId
     """
     required_header = ['token']
     check_result = check_data(request.headers, required_header)
     if check_result != None:
         return check_result
     token = request.headers.get('token')
-    required_data = ['movieName']
+    required_data = ['movieId']
     check_result = check_data(request.json, required_data)
     if check_result != None:
         return check_result
-    movieName = request.json.get('movieName')
+    movieId = request.json.get('movieId')
     result = run_statement("CALL count_user_top_four(?)", [token])
-    if (result[0] < 4):
-        result = run_statement("CALL add_user_top_four(?)", [movieName])
-        if (type(result) == list):
+    if int(result[0][0]) < 4:
+        result = run_statement("CALL add_user_top_four(?,?)", [movieId, token])
+        if type(result) == list:
             if result[0][0] == 1:
                 return make_response(jsonify("Successfully added movie selection to Top Four."), 200)
             elif result[0][0] == 0:
                 return make_response(jsonify("Something went wrong, please try again."), 500)
             else:
                 return make_response(jsonify(result), 500)
-    elif (result[0] == 4):
-        return make_response(jsonify("Error: User has maximum of 4 Top Movie Choices, please remove one first before adding another."), 400)
+    elif int(result[0][0]) == 4:
+        return make_response(jsonify("Error: User has a maximum of 4 Top Movie Choices. Please remove one first before adding another."), 400)
     else:
-        return make_response(jsonify("Error: User can have maximum of 4 Top Movie Choices"), 401)
-    
-# ADD ERROR HANDLING FOR POST USER TOP FOUR, IF MOVIENAME DIDNT EXIST
+        return make_response(jsonify("Error: User can have a maximum of 4 Top Movie Choices."), 401)
 
-# NEED TO CREATE PROCEDURE FOR ADD USER TOP 4
+
+    # if (result[0] < 4):
+    #     result = run_statement("CALL add_user_top_four(?,?)", [movieId, token])
+    #     if (type(result) == list):
+    #         if result[0][0] == 1:
+    #             return make_response(jsonify("Successfully added movie selection to Top Four."), 200)
+    #         elif result[0][0] == 0:
+    #             return make_response(jsonify("Something went wrong, please try again."), 500)
+    #         else:
+    #             return make_response(jsonify(result), 500)
+    # elif (result[0] == 4):
+    #     return make_response(jsonify("Error: User has maximum of 4 Top Movie Choices, please remove one first before adding another."), 400)
+    # else:
+    #     return make_response(jsonify("Error: User can have maximum of 4 Top Movie Choices"), 401)

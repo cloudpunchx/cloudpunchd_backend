@@ -113,7 +113,6 @@ def edit_user_profile():
             return make_response(jsonify("Something went wrong, please try again."), 500)
     else:
         return make_response(jsonify("There has been an unexpected error, please try again."), 500)
-# leaving off working with edit profile front end
 
 
 # DELETE User Profile
