@@ -95,12 +95,12 @@ CREATE TABLE `user` (
   `password` varchar(75) NOT NULL,
   `bio` varchar(500) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `profile_img` varchar(500) DEFAULT NULL,
+  `profile_img` varchar(1000) NOT NULL DEFAULT 'https://64.media.tumblr.com/c10ae2d77e036303fed04242b703db52/d46e5ac9d1a37136-7b/s1280x1920/694135614e64b494442a9ccc6dcd365561fbc3cd.jpg',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_UN_username` (`username`),
   UNIQUE KEY `user_UN_email` (`email`),
   CONSTRAINT `user_CHECK_email_format` CHECK (`email` like '%@%.__%')
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (9,'siobhan174','Siobhan','Bonardi','siobhanbonardi@testing.com','$2b$12$tfIdU8MWP6XVXRwkBSYL7.6Y/2HL6/jvKzBjuP0mO8EBHv0T330ty',NULL,'2023-03-09 23:14:46',NULL),(10,'hellonearth2006','Michelle','Egan','michelle@testing.com','$2b$12$S5Emtd1Nmp1nhzqQ8Le60ujmL1d.Krbztw.NsGmZIP6TR86wvXKbq',NULL,'2023-03-10 07:05:49',NULL),(35,'cloudpunchx','Siobhan','Eykelbosh','cloud@test.com','$2b$12$no/YuvvJKOYsJ7dgBiNOseZPuUXBTCyZbJ7wUX9saRUNSVEx1Ru6a','There are other worlds than these.','2023-03-11 22:04:43','https://www.joblo.com/wp-content/uploads/2017/07/terrifierscalpelfb-1280x720.jpg'),(43,'BigDad69','Craig','Eykelbosh','eykelboshc@gmail.com','$2b$12$BLrrgqWUvygCiW2Lf9bAqOU0mIfgozhsXA6ETPUEqgi27ZTUk5FeK',NULL,'2023-03-21 18:05:30',NULL);
+INSERT INTO `user` VALUES (9,'siobhan174','Siobhan','Bonardi','siobhanbonardi@testing.com','$2b$12$yhY6KL5JD0mUD9.2J8BTAeM81Y3MfByVh.mc4OZdX0esJFJING106',NULL,'2023-03-09 23:14:46','https://scontent.fyxd2-1.fna.fbcdn.net/v/t39.30808-6/352238946_10229778917153778_2596894566442364420_n.jpg?_nc_cat=102&cb_f2e=control&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Jhmovz9_fE4AX-fzkR8&_nc_ht=scontent.fyxd2-1.fna&oh=00_AfCrZpLF0aph9li_6Hn64YMbQg9OtHOVL4WY7X465pyzWw&oe=649AC8DB'),(10,'hellonearth2006','Michelle','Egan','michelle@testing.com','$2b$12$S5Emtd1Nmp1nhzqQ8Le60ujmL1d.Krbztw.NsGmZIP6TR86wvXKbq',NULL,'2023-03-10 07:05:49','https://scontent.fyxd2-1.fna.fbcdn.net/v/t39.30808-6/352238946_10229778917153778_2596894566442364420_n.jpg?_nc_cat=102&cb_f2e=control&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Jhmovz9_fE4AX-fzkR8&_nc_ht=scontent.fyxd2-1.fna&oh=00_AfCrZpLF0aph9li_6Hn64YMbQg9OtHOVL4WY7X465pyzWw&oe=649AC8DB'),(35,'cloudpunchx','Siobhan','Eykelbosh','cloudpunchx@test.com','$2b$12$J0GxPNarc9BuZKmWiFr60ef9WGl7QY4o4xW.saTSKMqYYB9he7vwO','There are other worlds than these.','2023-03-11 22:04:43','https://64.media.tumblr.com/c10ae2d77e036303fed04242b703db52/d46e5ac9d1a37136-7b/s1280x1920/694135614e64b494442a9ccc6dcd365561fbc3cd.jpg'),(43,'BigDad69','Craig','Eykelbosh','eykelboshc@gmail.com','$2b$12$BLrrgqWUvygCiW2Lf9bAqOU0mIfgozhsXA6ETPUEqgi27ZTUk5FeK',NULL,'2023-03-21 18:05:30','https://64.media.tumblr.com/c10ae2d77e036303fed04242b703db52/d46e5ac9d1a37136-7b/s1280x1920/694135614e64b494442a9ccc6dcd365561fbc3cd.jpg'),(44,'test1','Wendy','Torrance','test@test.com','$2b$12$pCKh2uUn92cyoMQh2gcg0ugbRxRQL5FqltIGiTeEmOCEvHdR7TISG',NULL,'2023-06-27 20:32:06','https://64.media.tumblr.com/c10ae2d77e036303fed04242b703db52/d46e5ac9d1a37136-7b/s1280x1920/694135614e64b494442a9ccc6dcd365561fbc3cd.jpg'),(45,'test2','test2','test2','test2@test.com','$2b$12$bBd2spBouLvCAwgcH8TeNeJuj4gf9WTcti4sBCHP9UAQDAoCHaGba',NULL,'2023-06-27 23:10:19','https://64.media.tumblr.com/c10ae2d77e036303fed04242b703db52/d46e5ac9d1a37136-7b/s1280x1920/694135614e64b494442a9ccc6dcd365561fbc3cd.jpg'),(46,'littlenightmare','Suze','Doe','littlenightmare@test.com','$2b$12$sw0zcafvQpJv6oeQTgr8zePmZbN1f/CSA3TeEjC6qCXwbLK7HPoNu','26 | warm warmer disco','2023-06-28 01:20:16','https://64.media.tumblr.com/c10ae2d77e036303fed04242b703db52/d46e5ac9d1a37136-7b/s1280x1920/694135614e64b494442a9ccc6dcd365561fbc3cd.jpg'),(52,'test','test','test','test5@test.com','$2b$12$pNDh9G4Cb34sgvkX.vcgcu2nX77S84Jb8KOtU4zo.1C59pN1Y3aZC',NULL,'2023-06-28 01:27:48','https://64.media.tumblr.com/c10ae2d77e036303fed04242b703db52/d46e5ac9d1a37136-7b/s1280x1920/694135614e64b494442a9ccc6dcd365561fbc3cd.jpg'),(60,'scoobydoo','Siobhan','Eykelbosh','scooby@test.com','$2b$12$zMqOibYUIAaVpHz4GMQkUu5CuQZPGcfWoYPWvWcABCsrQig4iBIO2',NULL,'2023-06-28 05:07:24','https://64.media.tumblr.com/c10ae2d77e036303fed04242b703db52/d46e5ac9d1a37136-7b/s1280x1920/694135614e64b494442a9ccc6dcd365561fbc3cd.jpg'),(63,'scoob','Siobhan','Bonardi','scoooob@test.com','$2b$12$.IWnxdJXukrVQxIYzlyMw.vyhX4fu4qyZkS2fosI/F5pxs03gcrWq',NULL,'2023-06-28 05:16:10','https://64.media.tumblr.com/c10ae2d77e036303fed04242b703db52/d46e5ac9d1a37136-7b/s1280x1920/694135614e64b494442a9ccc6dcd365561fbc3cd.jpg'),(65,'t','t','t','t@t.com','$2b$12$VMedAONgpyCchYLZINIPy.3u6t8WPpC8V1sBqRrghvTMywq7gEZLy','There are other worlds than these.','2023-06-28 05:17:24','https://64.media.tumblr.com/c10ae2d77e036303fed04242b703db52/d46e5ac9d1a37136-7b/s1280x1920/694135614e64b494442a9ccc6dcd365561fbc3cd.jpg'),(66,'testttt','Jane','Doe','janed@test.com','$2b$12$Fp/4Uio8I3xPC70cD2Q9B.ldzCx4ugjQbATNG0Q5bWOvAC2CzDL3m','There are other worlds than these.','2023-06-28 05:19:57','https://64.media.tumblr.com/f969357e3d363b0df633be5cbe949820/tumblr_pd0tfaby6P1rcaovvo1_1280.pnj'),(67,'roomie217','Jade','Doe','jade@test.com','$2b$12$MsXeKc0mKTbWeo787x.qLukC6JGfiW335wH8oxNzouXjnctCmyhfG',NULL,'2023-06-29 22:40:48','https://64.media.tumblr.com/c10ae2d77e036303fed04242b703db52/d46e5ac9d1a37136-7b/s1280x1920/694135614e64b494442a9ccc6dcd365561fbc3cd.jpg');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +129,7 @@ CREATE TABLE `userTopFour` (
   KEY `userTopFour_FK_user_id` (`user_id`),
   CONSTRAINT `userTopFour_FK_movie_id` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`),
   CONSTRAINT `userTopFour_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +138,7 @@ CREATE TABLE `userTopFour` (
 
 LOCK TABLES `userTopFour` WRITE;
 /*!40000 ALTER TABLE `userTopFour` DISABLE KEYS */;
-INSERT INTO `userTopFour` VALUES (1,45,9),(2,154,9),(3,45,35),(4,213,35),(5,39,35),(6,167,35);
+INSERT INTO `userTopFour` VALUES (1,45,9),(2,154,9),(3,45,35),(4,213,35),(5,39,35),(6,167,35),(7,167,66),(8,39,66),(9,213,66),(10,45,66),(17,213,46),(19,45,46);
 /*!40000 ALTER TABLE `userTopFour` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,7 +162,7 @@ CREATE TABLE `userWatched` (
   CONSTRAINT `userWatched_FK_movie_id` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`),
   CONSTRAINT `userWatched_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `userWatched_CHECK_rating_limit` CHECK (`rating` <= 5)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +171,7 @@ CREATE TABLE `userWatched` (
 
 LOCK TABLES `userWatched` WRITE;
 /*!40000 ALTER TABLE `userWatched` DISABLE KEYS */;
-INSERT INTO `userWatched` VALUES (15,35,65,'2023-03-18',5.0,0),(16,35,45,'2023-03-18',5.0,0),(17,35,21,'2023-03-18',2.5,0),(18,35,19,'2023-03-17',3.0,0),(19,35,65,'2023-03-19',3.5,0),(20,35,19,'2023-03-19',2.5,0),(21,35,21,'2023-03-19',4.0,0),(22,35,45,'2023-03-19',2.0,0),(23,35,19,'2023-03-19',5.0,0),(24,35,65,'2023-03-19',2.0,0),(25,35,19,'2023-03-19',4.0,0),(26,35,21,'2023-03-19',4.0,0),(27,35,213,'2023-03-20',5.0,1),(28,10,213,'2023-03-20',5.0,1),(29,9,213,'2023-03-19',5.0,1),(30,35,252,'2023-03-21',4.5,1),(36,43,144,'2023-03-21',5.0,0),(37,35,47,'2023-03-21',2.0,0);
+INSERT INTO `userWatched` VALUES (15,35,65,'2023-03-18',5.0,0),(16,35,45,'2023-03-18',5.0,0),(17,35,21,'2023-03-18',2.5,0),(18,35,19,'2023-03-17',3.0,0),(19,35,65,'2023-03-19',3.5,0),(20,35,19,'2023-03-19',2.5,0),(21,35,21,'2023-03-19',4.0,0),(22,35,45,'2023-03-19',2.0,0),(23,35,19,'2023-03-19',5.0,0),(24,35,65,'2023-03-19',2.0,0),(25,35,19,'2023-03-19',4.0,0),(26,35,21,'2023-03-19',4.0,0),(27,35,213,'2023-03-20',5.0,1),(28,10,213,'2023-03-20',5.0,1),(29,9,213,'2023-03-19',5.0,1),(30,35,252,'2023-03-21',4.5,1),(36,43,144,'2023-03-21',5.0,0),(37,35,47,'2023-03-21',2.0,0),(38,9,45,'2023-06-24',4.5,0),(39,66,19,'2023-06-28',4.0,1),(40,66,47,'2023-06-28',4.5,0),(41,66,213,'2023-06-28',3.0,0),(42,66,21,'2023-06-28',5.0,1),(43,66,151,NULL,NULL,0),(44,46,19,'2023-06-29',4.5,1),(45,46,213,'2023-06-21',3.0,0);
 /*!40000 ALTER TABLE `userWatched` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +191,7 @@ CREATE TABLE `userWatchlist` (
   KEY `userWatchlist_FK_movie_id` (`movie_id`),
   CONSTRAINT `userWatchlist_FK_movie_id` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`),
   CONSTRAINT `userWatchlist_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +200,7 @@ CREATE TABLE `userWatchlist` (
 
 LOCK TABLES `userWatchlist` WRITE;
 /*!40000 ALTER TABLE `userWatchlist` DISABLE KEYS */;
-INSERT INTO `userWatchlist` VALUES (1,9,4),(2,9,47),(3,9,106),(4,35,4),(5,35,47),(6,35,106),(7,35,45);
+INSERT INTO `userWatchlist` VALUES (1,9,4),(2,9,47),(3,9,106),(4,35,4),(5,35,47),(6,35,106),(7,35,45),(8,9,45),(9,46,4),(10,46,21),(11,46,28),(12,46,39),(13,46,45),(14,46,47),(15,46,65),(16,46,126),(17,46,144),(18,46,151),(19,46,154),(20,46,167);
 /*!40000 ALTER TABLE `userWatchlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -249,7 +249,7 @@ CREATE TABLE `user_movie_reviews` (
   KEY `user_movie_reviews_FK_user_id` (`user_id`),
   CONSTRAINT `user_movie_reviews_FK_movie_id` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`),
   CONSTRAINT `user_movie_reviews_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -258,7 +258,7 @@ CREATE TABLE `user_movie_reviews` (
 
 LOCK TABLES `user_movie_reviews` WRITE;
 /*!40000 ALTER TABLE `user_movie_reviews` DISABLE KEYS */;
-INSERT INTO `user_movie_reviews` VALUES (1,'in the name of the father (boogie nights), the son (the wolf of wall street), and the holy spirit (babylon)',19,35),(2,'Pennywise could never',45,35),(3,'I would simply close my eyes. Rip to everyone in this movie but I\'m different',65,35),(4,'I can see why audiences were SPLIT down the middle on this one',213,35),(5,'I love art the clown!',45,10);
+INSERT INTO `user_movie_reviews` VALUES (1,'in the name of the father (boogie nights), the son (the wolf of wall street), and the holy spirit (babylon)',19,35),(2,'Pennywise could never',45,35),(3,'I would simply close my eyes. Rip to everyone in this movie but I\'m different',65,35),(4,'I can see why audiences were SPLIT down the middle on this one',213,35),(5,'I love art the clown!',45,10),(6,'So creepy!',19,66),(7,'Watching this one again!',47,66),(8,'Love',213,66),(9,'I love this!',21,66),(11,'test',19,46),(12,'test 1',213,46),(13,'test 2',21,46);
 /*!40000 ALTER TABLE `user_movie_reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,7 +277,7 @@ CREATE TABLE `user_session` (
   UNIQUE KEY `user_session_UN_token` (`token`),
   KEY `user_session_FK_user_id` (`user_id`),
   CONSTRAINT `user_session_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -286,7 +286,7 @@ CREATE TABLE `user_session` (
 
 LOCK TABLES `user_session` WRITE;
 /*!40000 ALTER TABLE `user_session` DISABLE KEYS */;
-INSERT INTO `user_session` VALUES (35,9,'a608f5b9-c2d1-11ed-8f8c-42010a800002'),(37,9,'fc19297e-c2ef-11ed-8f8c-42010a800002'),(38,9,'7ed54fa0-c2f0-11ed-8f8c-42010a800002'),(43,35,'94660e79-c2f4-11ed-8f8c-42010a800002'),(51,35,'7a27b05e-c475-11ed-8f8c-42010a800002'),(62,35,'adfe9928-c6dc-11ed-8f8c-42010a800002'),(65,35,'7174a9ea-c79c-11ed-8f8c-42010a800002'),(68,35,'e4e99214-c83d-11ed-8f8c-42010a800002'),(70,35,'15e61345-c948-11ed-8f8c-42010a800002');
+INSERT INTO `user_session` VALUES (35,9,'a608f5b9-c2d1-11ed-8f8c-42010a800002'),(37,9,'fc19297e-c2ef-11ed-8f8c-42010a800002'),(38,9,'7ed54fa0-c2f0-11ed-8f8c-42010a800002'),(43,35,'94660e79-c2f4-11ed-8f8c-42010a800002'),(51,35,'7a27b05e-c475-11ed-8f8c-42010a800002'),(62,35,'adfe9928-c6dc-11ed-8f8c-42010a800002'),(65,35,'7174a9ea-c79c-11ed-8f8c-42010a800002'),(68,35,'e4e99214-c83d-11ed-8f8c-42010a800002'),(70,35,'15e61345-c948-11ed-8f8c-42010a800002'),(71,9,'f97ce06e-1252-11ee-bc75-42010a800002'),(80,60,'ab330957-1571-11ee-bc75-42010a800002'),(81,63,'e4af3cf9-1572-11ee-bc75-42010a800002'),(82,65,'113c0f46-1573-11ee-bc75-42010a800002'),(88,66,'315c6590-1604-11ee-bc75-42010a800002'),(90,46,'3385c8c5-16d4-11ee-bc75-42010a800002');
 /*!40000 ALTER TABLE `user_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -330,6 +330,28 @@ CREATE DEFINER=`innotech`@`%` PROCEDURE `add_movie_to_watchlist`(token_input VAR
 BEGIN
 	SELECT us.user_id INTO @userId FROM user_session us WHERE us.token = token_input;
 	INSERT INTO userWatchlist (user_id, movie_id) VALUES (@userId, movieId_input);
+	SELECT ROW_COUNT();
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `add_user_top_four` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`innotech`@`%` PROCEDURE `add_user_top_four`(movieId_input INT, token_input VARCHAR(45))
+    MODIFIES SQL DATA
+BEGIN
+	SELECT us.user_id INTO @userId FROM user_session us WHERE us.token = token_input;
+	INSERT INTO userTopFour (movie_id, user_id) VALUES (movieId_input, @userId);
 	SELECT ROW_COUNT();
 END ;;
 DELIMITER ;
@@ -568,7 +590,7 @@ DELIMITER ;;
 CREATE DEFINER=`innotech`@`%` PROCEDURE `get_reviews_by_user`(token_input VARCHAR(45))
 BEGIN
     SELECT us.user_id INTO @userId FROM user_session us WHERE us.token = token_input;
-    SELECT uw.id, uw.user_id, uw.movie_id, uw.watched_on, uw.rating, uw.loved, umr.review, m.Movie_Name, m.Release_Date, m.poster
+    SELECT uw.id, uw.user_id, uw.movie_id, DATE_FORMAT(uw.watched_on, '%d %M %Y') AS watched_on, uw.rating, uw.loved, umr.review, m.Movie_Name, m.Release_Date, m.poster
     FROM userWatched uw
     JOIN user_movie_reviews umr ON uw.movie_id = umr.movie_id AND uw.user_id = umr.user_id
     JOIN movies m ON uw.movie_id = m.id
@@ -771,4 +793,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-27 21:02:10
+-- Dump completed on 2023-06-30  2:53:15
