@@ -64,8 +64,7 @@ def user_signup():
         elif result[0][0] == 0:
             return make_response(jsonify("Something went wrong, please try again."), 500)
 
-# NOT WORKING
-# PATCH User Profile
+# PATCH User Profile (edit)
 @app.patch('/api/user')
 def edit_user_profile():
     """
@@ -101,13 +100,21 @@ def edit_user_profile():
     if (profile_img == ''):
         profile_img = None
     result = run_statement('CALL edit_user_profile(?,?,?,?,?,?,?,?)', [token, username, first_name, last_name, email, hash_result, bio, profile_img])
-    if (type(result) == list):
+    if 'user_UN_username' in result:
+        return make_response(jsonify("This username is already in use, please enter another username."), 409)
+    elif 'user_UN_email' in result:
+            return make_response(jsonify("This email is already in use, please enter another email or click forgot password."), 409)
+    elif 'user_CHECK_email_format' in result:
+            return make_response(jsonify("Check email format and try again. Hint: hello@cloudpunchd.com"))
+    elif (type(result) == list):
         if result[0][0] == 1:
             return make_response(jsonify("Successfully edited profile."), 200)
         elif result[0][0] == 0:
             return make_response(jsonify("Something went wrong, please try again."), 500)
     else:
-        return make_response(jsonify(result), 500)
+        return make_response(jsonify("There has been an unexpected error, please try again."), 500)
+# leaving off working with edit profile front end
+
 
 # DELETE User Profile
 @app.delete('/api/user')
