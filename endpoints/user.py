@@ -52,7 +52,11 @@ def user_signup():
     elif 'user_UN_email' in result:
             return make_response(jsonify("This email is already in use, please enter another email or click forgot password."), 409)
     elif 'user_CHECK_email_format' in result:
-            return make_response(jsonify("Check email format and try again."))
+            return make_response(jsonify("Check email format and try again."), 409)
+    elif 'octet_length(`username`) <= 30' in result:
+        return make_response(jsonify("Username can only be 20 characters max."), 409)
+    elif "DATA ERROR: Data too long for column 'username_input' at row 0" in result:
+        return make_response(jsonify("Username can only be 20 characters max."), 409)
     elif(type(result) == list):
         if result == []:
             return make_response(jsonify("Something went wrong, please try again."), 500)
@@ -106,6 +110,10 @@ def edit_user_profile():
             return make_response(jsonify("This email is already in use, please enter another email or click forgot password."), 409)
     elif 'user_CHECK_email_format' in result:
             return make_response(jsonify("Check email format and try again. Hint: hello@cloudpunchd.com"))
+    elif 'octet_length(`username`) <= 30' in result:
+        return make_response(jsonify("Username can only be 20 characters max."), 409)
+    elif "Data too long for column 'username_input' at row 0" in result:
+        return make_response(jsonify("Username can only be 20 characters max."), 409)
     elif (type(result) == list):
         if result[0][0] == 1:
             return make_response(jsonify("Successfully edited profile."), 200)
